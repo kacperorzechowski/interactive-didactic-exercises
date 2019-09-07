@@ -5,7 +5,7 @@ export default [
     component: () => import('@/views/Quiz')
   },
   {
-    path: 'creator',
+    path: '/creator',
     name: 'CreatorView',
     component: () => import('@/views/Creator')
   }
