@@ -1,12 +1,22 @@
+import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import 'vuetify/src/stylus/app.styl'
-import pl from 'vuetify/es5/locale/pl'
 
-Vue.use(Vuetify, {
-  iconfont: 'md',
-  lang: {
-    locales: { pl },
-    current: 'pl'
+Vue.use(Vuetify)
+
+export default new Vuetify({
+  icons: {
+    iconfont: 'md' // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4'
+  },
+  theme: {
+    dark: false
+  },
+  themes: {
+    light: {
+      primary: '#4682b4',
+      secondary: '#b0bec5',
+      accent: '#8c9eff',
+      error: '#b71c1c'
+    }
   }
 })
