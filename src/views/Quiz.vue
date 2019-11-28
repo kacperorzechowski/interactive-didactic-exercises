@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="height: 100%">
     <v-card xs-12 class="pa-5" :loading="!isLoaded">
       <component
         v-for="(component, key) in componentInstances"
@@ -10,13 +10,13 @@
         @validate="handleValidation"
       ></component>
 
-      <v-row class="buttons" v-if="!options.disableActions">
+      <v-row class="buttons mt-5" v-if="!options.disableActions">
         <v-btn @click="validate" :disabled="shouldValidate && showResult">sprawdz</v-btn>
         <v-btn color="secondary" @click="reset">Resetuj</v-btn>
-        <div v-if="!showResult">
-          Wypelnij pola i kliknij sprawdz
+        <div class="ml-3" v-if="!showResult">
+          Dopasuj pola i kliknij sprawdz
         </div>
-        <div v-else>
+        <div class="ml-3" v-else>
           Twoj wynik to: {{ result }}
         </div>
       </v-row>
@@ -36,10 +36,12 @@ export default {
     result: 0,
     results: [],
     showResult: false,
-    exercise: 'millionaire',
     isLoaded: false
   }),
   computed: {
+    exercise () {
+      return this.$route.params.exercise
+    },
     exercises () {
       return this.components[this.exercise] !== undefined ? this.components[this.exercise].exercises : []
     },
@@ -48,7 +50,6 @@ export default {
     },
     componentInstances () {
       const instances = []
-      console.log(this.exercises)
 
       for (let component of this.exercises) {
         instances.push({
@@ -67,8 +68,8 @@ export default {
       }
     }
   },
-  mounted () {
-    axios.get('http://localhost:3000/tests')
+  async mounted () {
+    await axios.get('http://localhost:3000/tests')
       .then((response) => {
         this.components = response.data
         this.isLoaded = true

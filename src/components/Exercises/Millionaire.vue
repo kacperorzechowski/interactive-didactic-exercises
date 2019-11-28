@@ -118,6 +118,8 @@ export default {
     failTest () {
       this.fireModal(`Ups! :(`, `Błędna odpowiedź. Twój wynik ${this.score}`)
       this.selectedAnswer = null
+      this.currentStage = 1
+      this.score = 0
     },
     activeStageColor (stage) {
       let color = ''
@@ -137,7 +139,7 @@ export default {
       return this.currentStage === this.stages.length
     },
     finishTest () {
-      this.fireModal(`Brawo!`, `Zakończyłeś test z największym wynikiem ${this.score}`)
+      this.fireModal(`Brawo!`, `Zakończyłeś test z największym wynikiem ${this.currentQuestion.stagePoints}`)
     }
   }
 }

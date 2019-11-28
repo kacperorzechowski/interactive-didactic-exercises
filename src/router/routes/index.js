@@ -1,7 +1,7 @@
 export default [
   {
-    path: '/quiz/:quizId',
-    name: 'QuizView',
+    path: '/exercise/:exercise',
+    name: 'Exercise',
     component: () => import('@/views/Quiz')
   },
   {
